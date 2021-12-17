@@ -2,7 +2,7 @@
   text-align: left;
 }
 
-.menu {
+header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -11,7 +11,7 @@
   background-color: rgb(134, 202, 224);
 }
 
-.menu h1 {
+header h1 {
   font-size: 2em;
   margin: 0;
   align-self: flex-start;
@@ -21,7 +21,7 @@
   padding-left: 0.5em;
 }
 
-.menu h1 img {
+header h1 img {
   height: 1em;
   width: 1em;
   vertical-align: text-bottom;
@@ -45,7 +45,14 @@
   border-radius: 10px;
   box-shadow: 3px 2px 5px 2px grey;
   padding: 0.5em;
+  border: 0px;
 }
+
+.menu-item:hover {
+  background-color: rgb(253, 255, 223);
+  box-shadow: 3px 2px 5px 2px rgb(156, 150, 57);
+}
+
 
 #content {
   display: flex;
