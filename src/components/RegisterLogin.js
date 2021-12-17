@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from 'react';
 
-const authenticated = false;
-const username = "Itamar C";
+import { AuthContext } from "../nav/context";
 
 function RegisterLogin() {
+    let auth = useContext(AuthContext);
+    const authenticated = auth.authenticated;
+    const username = auth.username;
+    
     if (authenticated) {
         return (
             <button className="menu-item">{username}</button>
