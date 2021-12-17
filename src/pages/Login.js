@@ -28,8 +28,6 @@ export default function Login() {
     
     return (
         <div>
-            <p>You must log in to view the page at {from}</p>
-
             <form onSubmit={handleSubmit}>
             <label>
                 Username: <input name="username" type="text" />

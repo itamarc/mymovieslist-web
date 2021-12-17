@@ -64,6 +64,10 @@ header h1 img {
   background-color: white;
 }
 
+#about {
+  margin: 2em;
+}
+
 footer {
   background-color: rgb(134, 202, 224);
   color: royalblue;

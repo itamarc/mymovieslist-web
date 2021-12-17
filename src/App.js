@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import Login from './pages/Login';
 import MovieLists from './pages/MovieLists';
 import UserData from './pages/UserData';
+import About from './pages/About';
+import Register from './pages/Register';
 
 import './App.css';
 
@@ -19,6 +21,8 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<MovieLists />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/user"
             element={
