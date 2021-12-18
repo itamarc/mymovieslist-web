@@ -5,15 +5,13 @@ import { AuthContext } from './context';
 /**
  * This represents some generic auth provider API, like Firebase.
  */
-const myAuthProvider = {
-    isAuthenticated: false,
+const googleAuthProvider = {
     signin(callback) {
-        myAuthProvider.isAuthenticated = true;
-        setTimeout(callback, 100); // fake async
+      setTimeout(callback, 100); // fake async
+      // check if user is registered and get its data from the server
     },
     signout(callback) {
-        myAuthProvider.isAuthenticated = false;
-        setTimeout(callback, 100);
+      setTimeout(callback, 100);
     }
 };
 
@@ -34,22 +32,24 @@ function RequireAuth({ children }) {
 
 function AuthProvider({ children }) {
     let [user, setUser] = useState(null);
+    let [userData, setUserData] = useState({});
   
     let signin = (newUser, callback) => {
-      return myAuthProvider.signin(() => {
-        setUser(newUser);
+      return googleAuthProvider.signin(() => {
+        setUser(newUser.name);
+        setUserData(newUser);
         callback();
       });
     };
-  
+    
     let signout = (callback) => {
-      return myAuthProvider.signout(() => {
+      return googleAuthProvider.signout(() => {
         setUser(null);
         callback();
       });
     };
   
-    let value = { user, signin, signout };
+    let value = { user, userData, signin, signout };
   
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

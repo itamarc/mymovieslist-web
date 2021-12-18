@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+import GoogleLogin from "react-google-login";
 import { useNavigate, useLocation } from "react-router-dom";
+import { google_client_id } from "../nav/auth-data";
 import { AuthContext } from "../nav/context";
 
 export default function Login() {
@@ -9,13 +11,10 @@ export default function Login() {
   
     let from = location.state?.from?.pathname || "/";
   
-    function handleSubmit(event) {
-        event.preventDefault();
-    
-        let formData = new FormData(event.currentTarget);
-        let username = formData.get("username");
-    
-        auth.signin(username, () => {
+    function handleSubmit(response) {
+        console.log(response);
+
+        auth.signin(response.profileObj, () => {
             // Send them back to the page they tried to visit when they were
             // redirected to the login page. Use { replace: true } so we don't create
             // another entry in the history stack for the login page.  This means that
@@ -27,13 +26,19 @@ export default function Login() {
     }
     
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-            <label>
-                Username: <input name="username" type="text" />
-            </label>{" "}
-            <button type="submit">Login</button>
-            </form>
-        </div>
+        <GoogleLogin
+            clientId={google_client_id}
+            buttonText="Login"
+            onSuccess={handleSubmit}
+            onFailure={handleSubmit}
+            // render={{
+            //     theme: "filled_black",
+            //     size: "large",
+            //     type: "standard",
+            //     shape: "pill",
+            //     locale: "en",
+            //     logo_alignment: "left",
+            // }}
+            />
     );
 }

@@ -6,14 +6,16 @@ import { AuthContext } from "../nav/context";
 function RegisterLogin() {
     const navigate = useNavigate()
     let auth = useContext(AuthContext);
-    const authenticated = auth.authenticated;
-    const username = auth.username;
+
+    function signoutCallback() {
+        console.log("signoutCallback");
+    }
     
     if (auth.user) {
         return (
             <span className='menu-items'>
-                <button className="menu-item" onClick={() => navigate("/user")}>{auth.user}</button>
-                <button className="menu-item" onClick={() => auth.signout()}>Logout</button>
+                <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg" src={auth.userData.imageUrl}/>{auth.userData.name}</button>
+                <button className="menu-item" onClick={() => auth.signout(signoutCallback)}>Logout</button>
             </span>
         );
     } else {
