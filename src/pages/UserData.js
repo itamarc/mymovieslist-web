@@ -1,9 +1,11 @@
 import React from "react";
+import User from "../components/User";
 
 function UserData() {
     return (
         <div>
-            <h1>UserData</h1>
+            <h1>My Data</h1>
+            <User />
         </div>
     );
 }

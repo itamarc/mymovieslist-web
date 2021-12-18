@@ -61,6 +61,32 @@ header h1 img {
   vertical-align: middle;
 }
 
+#user {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 40%;
+  box-shadow: 3px 2px 5px 2px grey;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 0.5em;
+}
+
+#avatar {
+  grid-row: 1/span 2;
+  grid-column: 1;
+  border-radius: 50%;
+}
+
+#username {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+#email {
+  grid-row: 2;
+  grid-column: 2;
+}
+
 #content {
   display: flex;
   flex-direction: column;

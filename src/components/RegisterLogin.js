@@ -14,7 +14,8 @@ function RegisterLogin() {
     if (auth.user) {
         return (
             <span className='menu-items'>
-                <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg" src={auth.userData.imageUrl}/>{auth.userData.name}</button>
+                <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg"
+                    src={auth.userData.imageUrl} alt={auth.userData.name}/>{auth.userData.name}</button>
                 <button className="menu-item" onClick={() => auth.signout(signoutCallback)}>Logout</button>
             </span>
         );
