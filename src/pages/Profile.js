@@ -1,7 +1,7 @@
 import React from "react";
 import User from "../components/User";
 
-function UserData() {
+function Profile() {
     return (
         <div>
             <h1>My Data</h1>
@@ -10,4 +10,4 @@ function UserData() {
     );
 }
 
-export default UserData;
+export default Profile;

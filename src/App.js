@@ -8,7 +8,8 @@ import Footer from './components/Footer';
 
 import Login from './pages/Login';
 import MovieLists from './pages/MovieLists';
-import UserData from './pages/UserData';
+import MovieList from './pages/MovieList';
+import Profile from './pages/Profile';
 import About from './pages/About';
 import Register from './pages/Register';
 
@@ -20,6 +21,7 @@ export default function App() {
       <Router><Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MovieLists />} />
+          <Route path="/movieList" element={<MovieList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
@@ -27,7 +29,7 @@ export default function App() {
             path="/user"
             element={
               <RequireAuth>
-                <UserData />
+                <Profile />
               </RequireAuth>
             }
           />
