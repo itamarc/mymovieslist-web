@@ -7,8 +7,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Login from './pages/Login';
-import MovieLists from './pages/MovieLists';
-import MovieList from './pages/MovieList';
+import MoviesLists from './pages/MoviesLists';
+import MoviesList from './pages/MoviesList';
 import Profile from './pages/Profile';
 import About from './pages/About';
 import Register from './pages/Register';
@@ -20,8 +20,12 @@ export default function App() {
     <AuthProvider>
       <Router><Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<MovieLists />} />
-          <Route path="/movieList" element={<MovieList />} />
+          <Route path="/" element={<MoviesLists />} />
+          <Route path="/moviesList/:moviesListId" element={<MoviesList />} />
+          {/* <Route path="/moviesList" element={<MoviesLists />}>
+            <Route index element={<div>testing</div>}/>
+            <Route path=":moviesListId" element={<MovieList />} />
+          </Route> */}
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
@@ -31,6 +35,14 @@ export default function App() {
               <RequireAuth>
                 <Profile />
               </RequireAuth>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>"That's not the page you're looking for!"<br/>- Kenobi, Obi-Wan</p>
+              </main>
             }
           />
         </Route>
@@ -43,7 +55,9 @@ function Layout() {
   return (
     <div className="App">
       <Header />
+      <div id="postheader">&nsbsp;</div>
       <Outlet />
+      <div id="prefooter">&nbsp;</div>
       <Footer />
     </div>
   );

@@ -1,8 +1,31 @@
-function getMovieListData(movieListId) {
-    
+function getMoviesLists() {
+    return [
+        {
+            id: 1,
+            name: "My list",
+            user: "Itamar"
+        },
+        {
+            id: 2,
+            name: "Sci-fi Movies",
+            user: "Itamar"
+        },
+        {
+            id: 3,
+            name: "Romance Movies",
+            user: "Jane Doe"
+        },
+    ];
 }
 
-function getMoviesLists() {
+function getMoviesList(moviesListId) {
+    return getMoviesLists().find(
+        movieList => movieList.id === moviesListId
+    );
+}
+
+function getMoviesByListId(movieListId) {
+    // for now, it's returning the same list, ignoring the id
     return [
         {
             id: 1,
@@ -49,4 +72,4 @@ function getMoviesLists() {
     ];
 }
 
-export { getMovieListData, getMoviesLists }
+export { getMoviesLists, getMoviesList, getMoviesByListId }
