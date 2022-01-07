@@ -30,6 +30,12 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route
+            path="/user/:userId"
+            element={
+                <Profile element={<Profile />}/>
+            }
+          />
+          <Route
             path="/user"
             element={
               <RequireAuth>

@@ -1,14 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Movie from "../components/Movie";
-import MovieListEntry from "../components/MovieListEntry";
+import MovieListEntry from "../components/MoviesListEntry";
 import { getMoviesByListId, getMoviesList } from "../data/MoviesListData"
 
 function MoviesList() {
     const params = useParams();
     console.log("params.moviesListId: "+params.moviesListId);
     let moviesList = getMoviesList(parseInt(params.moviesListId));
-    console.log("moviesList: " + moviesList)
+    console.log("moviesList: ")
+    console.log(moviesList)
     let movies = getMoviesByListId(params.moviesListId);
 
     return (

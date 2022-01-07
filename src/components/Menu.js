@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import RegisterLogin from './RegisterLogin';
+import RegisterLoginButtons from './RegisterLoginButtons';
 
 function Menu() {
     const navigate = useNavigate()
@@ -9,7 +9,7 @@ function Menu() {
         <div className='menu-items'>
             <button className="menu-item" onClick={() => navigate("/")}>Home</button>
             <button className="menu-item" onClick={() => navigate("/about")}>About</button>
-            <RegisterLogin />
+            <RegisterLoginButtons />
         </div>
     );
 }

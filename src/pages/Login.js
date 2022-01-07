@@ -4,13 +4,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { google_client_id } from "../nav/auth-data";
 import { AuthContext } from "../nav/context";
 
-export default function Login() {
+export default function Login({buttonText}) {
     let navigate = useNavigate();
     let location = useLocation();
     let auth = useContext(AuthContext);
   
     let from = location.state?.from?.pathname || "/";
-  
+
+    if (typeof buttonText === "undefined") {
+        buttonText = "Login";
+    }
+
     function handleSubmit(response) {
         console.log(response);
 
@@ -28,9 +32,11 @@ export default function Login() {
     return (
         <GoogleLogin
             clientId={google_client_id}
-            buttonText="Login"
+            buttonText={buttonText}
             onSuccess={handleSubmit}
             onFailure={handleSubmit}
+            className="google_login_button"
+            theme="dark"
             // render={{
             //     theme: "filled_black",
             //     size: "large",

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from "../nav/context";
 
-function RegisterLogin() {
+function RegisterLoginButtons() {
     const navigate = useNavigate()
     let auth = useContext(AuthContext);
 
@@ -29,4 +29,4 @@ function RegisterLogin() {
     }
 }
 
-export default RegisterLogin;
+export default RegisterLoginButtons;

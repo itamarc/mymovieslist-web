@@ -1,19 +1,42 @@
 function getMoviesLists() {
-    return [
-        {
+    return [{
             id: 1,
             name: "My list",
-            user: "Itamar"
+            created: "2022-01-01T00:00:00.000Z",
+            updated: "2022-01-02T00:00:00.000Z",
+            user: {
+                id: 1,
+                name: "Itamar",
+                email: "itamarc@gmail.com",
+                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                registered: "2022-01-07T00:00:00.000Z"
+            }
         },
         {
             id: 2,
             name: "Sci-fi Movies",
-            user: "Itamar"
+            created: "2022-01-01T00:00:00.000Z",
+            updated: "2022-01-02T00:00:00.000Z",
+            user: {
+                id: 1,
+                name: "Itamar",
+                email: "itamarc@gmail.com",
+                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                registered: "2022-01-06T13:00:00.000Z"
+            }
         },
         {
             id: 3,
             name: "Romance Movies",
-            user: "Jane Doe"
+            created: "2022-01-01T00:00:00.000Z",
+            updated: "2022-01-02T00:00:00.000Z",
+            user: {
+                id: 2,
+                name: "John",
+                email: "john.constantine@realhell.com",
+                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                registered: "2022-01-07T10:00:00.000Z"
+            }
         },
     ];
 }
@@ -24,52 +47,78 @@ function getMoviesList(moviesListId) {
     );
 }
 
+function getMoviesListsByUser(userId) {
+    return getMoviesLists().filter(
+        movieList => movieList.user.id === userId
+    );
+}
+
 function getMoviesByListId(movieListId) {
     // for now, it's returning the same list, ignoring the id
-    return [
-        {
+    return [{
             id: 1,
             title: "The Polar Express",
             year: 2004,
-            category: "Animation"
+            categories: ["Animation"]
         },
         {
             id: 2,
             title: "The Dark Knight",
             year: 2008,
-            category: "Action"
+            categories: ["Action"]
         },
         {
             id: 3,
             title: "Clash of the Titans",
             year: 2010,
-            category: "Action"
+            categories: ["Action", "Fantasy"]
         },
         {
             id: 4,
             title: "Inception",
             year: 2010,
-            category: "Sci-fi"
+            categories: ["Sci-fi"]
         },
         {
             id: 5,
             title: "Tenet",
             year: 2020,
-            category: "Sci-fi"
+            categories: ["Sci-fi"]
         },
         {
             id: 6,
             title: "Interstellar",
             year: 2014,
-            category: "Sci-fi"
+            categories: ["Sci-fi"]
         },
         {
             id: 7,
             title: "American Sniper",
             year: 2014,
-            category: "Drama"
+            categories: ["Drama", "War"]
         }
     ];
 }
 
-export { getMoviesLists, getMoviesList, getMoviesByListId }
+function getUserById(userId) {
+    let users = [{
+            id: 1,
+            name: "Itamar",
+            email: "itamarc@gmail.com",
+            imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+            registered: "2022-01-06T13:00:00.000Z"
+        },
+        {
+            id: 2,
+            name: "John",
+            email: "john.constantine@realhell.com",
+            imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+            registered: "2022-01-07T10:00:00.000Z"
+        }
+    ];
+    return users.find(
+        user => user.id === userId
+    );
+}
+
+export { getMoviesLists, getMoviesList, getMoviesByListId, getUserById, getMoviesListsByUser };

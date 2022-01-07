@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MovieListEntry from "../components/MovieListEntry";
+import MovieListEntry from "../components/MoviesListEntry";
 import { getMoviesLists } from "../data/MoviesListData";
 
 function MoviesLists() {
