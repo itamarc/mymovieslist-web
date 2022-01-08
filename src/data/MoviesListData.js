@@ -100,25 +100,33 @@ function getMoviesByListId(movieListId) {
     ];
 }
 
+const users = [
+    {
+        id: 1,
+        name: "Itamar",
+        email: "itamarc@gmail.com",
+        imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+        registered: "2022-01-06T13:00:00.000Z"
+    },
+    {
+        id: 2,
+        name: "John",
+        email: "john.constantine@realhell.com",
+        imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+        registered: "2022-01-07T10:00:00.000Z"
+    }
+];
+
 function getUserById(userId) {
-    let users = [{
-            id: 1,
-            name: "Itamar",
-            email: "itamarc@gmail.com",
-            imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
-            registered: "2022-01-06T13:00:00.000Z"
-        },
-        {
-            id: 2,
-            name: "John",
-            email: "john.constantine@realhell.com",
-            imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
-            registered: "2022-01-07T10:00:00.000Z"
-        }
-    ];
     return users.find(
         user => user.id === userId
     );
 }
 
-export { getMoviesLists, getMoviesList, getMoviesByListId, getUserById, getMoviesListsByUser };
+function getUserByEmail(email) {
+    return users.find(
+        user => user.email === email
+    );
+}
+
+export { getMoviesLists, getMoviesList, getMoviesByListId, getUserById, getUserByEmail, getMoviesListsByUser };

@@ -4,7 +4,7 @@ import { getUserById } from "../data/MoviesListData"
 
 function User({userId}) {
     let auth = useContext(AuthContext);
-    let userData = getUserData(parseInt(userId), auth);
+    let userData = getUserData(userId, auth);
 
     return (
         <div id="user">
@@ -19,7 +19,7 @@ function getUserData(userId, auth) {
     if (typeof userId === "undefined" && typeof auth !== "undefined") {
         return auth.userData;
     } else {
-        return getUserById(userId);
+        return getUserById(parseInt(userId));
     }
 }
 
