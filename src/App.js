@@ -21,7 +21,7 @@ export default function App() {
       <Router><Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MoviesLists />} />
-          <Route path="/moviesList/:moviesListId" element={<MoviesList />} />
+          <Route path="/movies-lists/:moviesListId" element={<MoviesList />} />
           {/* <Route path="/moviesList" element={<MoviesLists />}>
             <Route index element={<div>testing</div>}/>
             <Route path=":moviesListId" element={<MovieList />} />
@@ -29,14 +29,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/user/:userId"
-            element={
-                <Profile element={<Profile />}/>
-            }
-          />
-          <Route
-            path="/user"
+          <Route path="/user/:userId" element={<Profile />} />
+          <Route path="/user"
             element={
               <RequireAuth>
                 <Profile />

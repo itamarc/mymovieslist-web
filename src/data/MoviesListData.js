@@ -8,7 +8,7 @@ function getMoviesLists() {
                 id: 1,
                 name: "Itamar",
                 email: "itamarc@gmail.com",
-                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                imageUrl: "https://avatars.githubusercontent.com/u/19577272?v=4",
                 registered: "2022-01-07T00:00:00.000Z"
             }
         },
@@ -21,7 +21,7 @@ function getMoviesLists() {
                 id: 1,
                 name: "Itamar",
                 email: "itamarc@gmail.com",
-                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                imageUrl: "https://avatars.githubusercontent.com/u/19577272?v=4",
                 registered: "2022-01-06T13:00:00.000Z"
             }
         },
@@ -34,7 +34,7 @@ function getMoviesLists() {
                 id: 2,
                 name: "John",
                 email: "john.constantine@realhell.com",
-                imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+                imageUrl: "https://www.superherodb.com/pictures2/portraits/10/100/718.jpg",
                 registered: "2022-01-07T10:00:00.000Z"
             }
         },
@@ -105,14 +105,14 @@ const users = [
         id: 1,
         name: "Itamar",
         email: "itamarc@gmail.com",
-        imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+        imageUrl: "https://avatars.githubusercontent.com/u/19577272?v=4",
         registered: "2022-01-06T13:00:00.000Z"
     },
     {
         id: 2,
         name: "John",
         email: "john.constantine@realhell.com",
-        imageUrl: "https://avatars2.githubusercontent.com/u/1234?s=460&v=4",
+        imageUrl: "https://www.superherodb.com/pictures2/portraits/10/100/718.jpg",
         registered: "2022-01-07T10:00:00.000Z"
     }
 ];

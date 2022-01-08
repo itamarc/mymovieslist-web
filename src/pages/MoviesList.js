@@ -6,10 +6,7 @@ import { getMoviesByListId, getMoviesList } from "../data/MoviesListData"
 
 function MoviesList() {
     const params = useParams();
-    console.log("params.moviesListId: "+params.moviesListId);
     let moviesList = getMoviesList(parseInt(params.moviesListId));
-    console.log("moviesList: ")
-    console.log(moviesList)
     let movies = getMoviesByListId(params.moviesListId);
 
     return (
