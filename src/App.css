@@ -60,6 +60,10 @@ header h1 img {
   border: 0px;
 }
 
+#movie_search_input:focus {
+  outline: none;
+}
+
 #search_button {
   border-radius: 15px;
   border: 0px;

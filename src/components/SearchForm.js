@@ -1,9 +1,16 @@
 import React from 'react';
 
 function SearchForm() {
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const searchInput = event.target.elements.movie_search_input.value;
+        window.location.href = `/search/${searchInput}`;
+    }
+
     return (
-        <form id="search_form">
-            <input id="movie_search_input" type="text" placeholder="Movie name" size="30" />
+        <form id="search_form" onSubmit={handleSubmit}>
+            <input id="movie_search_input" name="movie_search_input" type="text" placeholder="Movie name" size="30" />
             <button id="search_button" type="submit"><svg version="1.1" x="0px" y="0px"
 	        width="1.8em" height="1.8em" viewBox="0 0 30.239 30.239"><g><path
             d="M20.194,3.46c-4.613-4.613-12.121-4.613-16.734,0c-4.612,4.614-4.612,12.121,0,16.735

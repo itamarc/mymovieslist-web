@@ -12,6 +12,7 @@ import MoviesList from './pages/MoviesList';
 import Profile from './pages/Profile';
 import About from './pages/About';
 import Register from './pages/Register';
+import SearchResult from './pages/SearchResult';
 
 import './App.css';
 
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user/:userId" element={<Profile />} />
+          <Route path="/search/:movie_search_input" element={<SearchResult />} />
           <Route path="/user"
             element={
               <RequireAuth>
