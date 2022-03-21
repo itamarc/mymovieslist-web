@@ -1,7 +1,7 @@
 function getMoviesLists() {
     return [{
             id: 1,
-            name: "My list",
+            title: "My list",
             created: "2022-01-01T00:00:00.000Z",
             updated: "2022-01-02T00:00:00.000Z",
             user: {
@@ -14,7 +14,7 @@ function getMoviesLists() {
         },
         {
             id: 2,
-            name: "Sci-fi Movies",
+            title: "Sci-fi Movies",
             created: "2022-01-01T00:00:00.000Z",
             updated: "2022-01-02T00:00:00.000Z",
             user: {
@@ -27,7 +27,7 @@ function getMoviesLists() {
         },
         {
             id: 3,
-            name: "Romance Movies",
+            title: "Romance Movies",
             created: "2022-01-01T00:00:00.000Z",
             updated: "2022-01-02T00:00:00.000Z",
             user: {

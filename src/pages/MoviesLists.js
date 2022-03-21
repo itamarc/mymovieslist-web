@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import MovieListEntry from "../components/MoviesListEntry";
-import { getMoviesLists } from "../data/MoviesListData";
+import MoviesListService from "../services/MoviesListService";
 
 function MoviesLists() {
     const [moviesLists, setMoviesLists] = useState([]);
 
     useEffect(() => {
-        setMoviesLists(getMoviesLists())
+      MoviesListService.getMoviesLists().then(response => {
+        setMoviesLists(response.data)
+      });
     }, [])
 
     return (

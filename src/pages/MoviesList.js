@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Movie from "../components/Movie";
 import MovieListEntry from "../components/MoviesListEntry";
-import { getMoviesByListId, getMoviesList } from "../data/MoviesListData"
+import MoviesListService from "../services/MoviesListService";
 
 function MoviesList() {
     const params = useParams();
-    let moviesList = getMoviesList(parseInt(params.moviesListId));
-    let movies = getMoviesByListId(params.moviesListId);
+    const [moviesList, setMoviesList] = useState([]);
+
+    useEffect(() => {
+        MoviesListService.getMoviesListWithMovies(parseInt(params.moviesListId)).then(
+            response => {
+                setMoviesList(response.data);
+            });
+    }, [params.moviesListId]);
+
+    let movies = moviesList.movies || [];
 
     return (
         <div>
