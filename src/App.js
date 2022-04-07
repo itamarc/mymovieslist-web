@@ -5,6 +5,7 @@ import { AuthProvider, RequireAuth } from "./nav/auth";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 
 import Login from './pages/Login';
 import MoviesLists from './pages/MoviesLists';
@@ -23,15 +24,12 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<MoviesLists />} />
           <Route path="/movies-lists/:moviesListId" element={<MoviesList />} />
-          {/* <Route path="/moviesList" element={<MoviesLists />}>
-            <Route index element={<div>testing</div>}/>
-            <Route path=":moviesListId" element={<MovieList />} />
-          </Route> */}
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user/:userId" element={<Profile />} />
           <Route path="/search/:movie_search_input" element={<SearchResult />} />
+          <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           <Route path="/user"
             element={
               <RequireAuth>
