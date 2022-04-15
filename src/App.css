@@ -203,6 +203,16 @@ header h1 img {
 
 .google_login_button {
   font-weight: bold;
+  border: 1px solid gray;
+  border-radius: 1.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.google_login_button img {
+  height: 3em;
+  width: 3em;
+  vertical-align: middle;
 }
 
 #about {

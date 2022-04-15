@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from "../nav/context";
-import { getUserById } from "../data/MoviesListData"
+import UserService from "../services/UserService";
 
 function User({userId}) {
     let auth = useContext(AuthContext);
@@ -19,7 +19,8 @@ function getUserData(userId, auth) {
     if (typeof userId === "undefined" && typeof auth !== "undefined") {
         return auth.userData;
     } else {
-        return getUserById(parseInt(userId));
+        console.log("User.getUserData - userId: " + userId);
+        return UserService.getUserWithMoviesLists(parseInt(userId));
     }
 }
 

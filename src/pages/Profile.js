@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
+
 import User from "../components/User";
 import MovieListEntry from "../components/MoviesListEntry";
-import { getMoviesListsByUser, getUserByEmail } from "../data/MoviesListData"
 import { AuthContext } from "../nav/context";
+import AuthService from "../services/AuthService";
 
 
 function Profile() {
@@ -11,7 +12,10 @@ function Profile() {
     let auth = useContext(AuthContext);
     let userId = getUserId(params, auth);
 
-    let moviesLists = getMoviesListsByUser(parseInt(userId));
+    let userAndLists = AuthService.getCurrentUser();
+    console.log("Profile.userAndLists: ", userAndLists);
+    let moviesLists = userAndLists.moviesLists;
+    console.log("Profile.moviesLists: ", moviesLists);
 
     return (
         <div>
@@ -27,14 +31,14 @@ function Profile() {
 }
 
 function getUserId(params, auth) {
-    if (typeof params.userId === "undefined") {
-        if (typeof auth !== "undefined") {
-            return getUserByEmail(auth.userData.email).id;
-        } else {
-            return "";
-        }
+    if (typeof auth !== "undefined") {
+        return auth.userData.id;
     } else {
-        return params.userId;
+        if (typeof params.userId === "undefined") {
+            return "";
+        } else {
+            return params.userId;
+        }
     }
 }
 

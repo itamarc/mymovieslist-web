@@ -10,8 +10,8 @@ function RegisterLoginButtons() {
     function signoutCallback() {
         console.log("signoutCallback");
     }
-    
-    if (auth.user) {
+
+    if (auth.userData && auth.userData.id) {
         return (
             <span className='menu-items'>
                 <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg"

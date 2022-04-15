@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { AuthContext } from './context';
+import AuthService from '../services/AuthService';
 
 /**
  * This represents some generic auth provider API, like Firebase.
@@ -11,7 +12,7 @@ const googleAuthProvider = {
       // check if user is registered and get its data from the server
     },
     signout(callback) {
-      setTimeout(callback, 100);
+      AuthService.logout();
     }
 };
 
@@ -19,7 +20,7 @@ function RequireAuth({ children }) {
     let auth = useContext(AuthContext);
     let location = useLocation();
   
-    if (!auth.user) {
+    if (!auth.userData) {
         // Redirect them to the /login page, but save the current location they were
         // trying to go to when they were redirected. This allows us to send them
         // along to that page after they login, which is a nicer user experience
@@ -43,6 +44,8 @@ function AuthProvider({ children }) {
     };
     
     let signout = (callback) => {
+      console.log("AuthProvider signout");
+      setUserData({});
       return googleAuthProvider.signout(() => {
         setUser(null);
         callback();

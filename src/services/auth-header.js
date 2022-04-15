@@ -1,8 +1,10 @@
+import { ACCESS_TOKEN } from "../constants";
+
 export default function authHeader() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.accessToken) {
-        return { Authorization: 'Bearer ' + user.accessToken };
-    } else {
+    var token = localStorage.getItem(ACCESS_TOKEN);
+    if(!token) {
         return {};
+    } else {
+        return { Authorization: "Bearer " + token };
     }
 }

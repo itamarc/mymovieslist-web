@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { ACCESS_TOKEN } from "../constants";
 
 function OAuth2RedirectHandler() {
     let location = useLocation();
+
+    useEffect(() => {
+        let params = new URLSearchParams(location.search);
+        let accessToken = params.get("access_token");
+        console.log("xOAuth2RedirectHandler accessToken:", accessToken);
+        if (accessToken) {
+            localStorage.setItem(ACCESS_TOKEN, accessToken);
+            Navigate("/");
+        }
+    }, [location]);
 
     const getUrlParameter = (name) => {
         name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
