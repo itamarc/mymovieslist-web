@@ -1,10 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from "../nav/context";
 import UserService from "../services/UserService";
 
-function User({userId}) {
-    let auth = useContext(AuthContext);
-    let userData = getUserData(userId, auth);
+function User() {
+    const params = useParams();
+    const auth = useContext(AuthContext);
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        let user = getUserData(params.userId, auth);
+        if (user instanceof Promise) {
+            user.then(user => setUserData(user));
+        } else {
+            setUserData(user);
+        }
+    }, [params, auth]);
 
     return (
         <div id="user">
@@ -16,11 +27,17 @@ function User({userId}) {
 }
 
 function getUserData(userId, auth) {
-    if (typeof userId === "undefined" && typeof auth !== "undefined") {
+    if (typeof userId === "undefined" &&
+        typeof auth !== "undefined" && typeof auth.userData !== "undefined") {
+        return auth.userData;
+    } else if (typeof auth !== "undefined" && typeof auth.userData !== "undefined"
+        && typeof auth.userData.id !== "undefined" && auth.userData.id === userId) {
         return auth.userData;
     } else {
-        console.log("User.getUserData - userId: " + userId);
-        return UserService.getUserWithMoviesLists(parseInt(userId));
+        return UserService.getUserWithMoviesLists(parseInt(userId))
+            .then(user => {
+                return user;
+            });
     }
 }
 

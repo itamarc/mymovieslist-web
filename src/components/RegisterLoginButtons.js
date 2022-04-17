@@ -11,12 +11,17 @@ function RegisterLoginButtons() {
         console.log("signoutCallback");
     }
 
+    const logout = () => {
+        auth.signout(signoutCallback);
+        navigate("/");
+    }
+
     if (auth.userData && auth.userData.id) {
         return (
             <span className='menu-items'>
                 <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg"
                     src={auth.userData.imageUrl} alt={auth.userData.name}/>{auth.userData.name}</button>
-                <button className="menu-item" onClick={() => auth.signout(signoutCallback)}>Logout</button>
+                <button className="menu-item" onClick={logout}>Logout</button>
             </span>
         );
     } else {

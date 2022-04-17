@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Snackbar } from '@mui/material';
 import AuthService from '../services/AuthService';
-import { ACCESS_TOKEN } from '../constants';
 import { AuthContext } from '../nav/context';
 
 function LoginForm() {
@@ -16,14 +15,12 @@ function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        AuthService.login(email, password).then(response => {
-            console.log("LoginForm.handleSubmit - response:", response);
+        AuthService.login(email, password).then(() => {
             auth.userData = JSON.parse(localStorage.getItem("userData"));
-            setStatus('success');
-            setStatusMessage("You're successfully logged in!");
             navigate("/");
         }).catch(error => {
-            localStorage.removeItem(ACCESS_TOKEN);
+            AuthService.logout();
+            auth.userData = null;
             setStatus('error');
             setStatusMessage((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 import { API_BASE_URL } from '../constants';
 
 class MoviesListService {
@@ -11,7 +10,7 @@ class MoviesListService {
     }
 
     getMoviesList(moviesListId) {
-        return axios.get(API_BASE_URL + '/movies-lists/' + moviesListId, { headers: authHeader() });
+        return axios.get(API_BASE_URL + '/movies-lists/' + moviesListId);
     }
 
     getMoviesListWithMovies(moviesListId) {
