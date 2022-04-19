@@ -40,15 +40,15 @@ function Profile() {
 }
 
 function getUserId(params, auth) {
-    if (typeof params.userId !== "undefined") {
+    if (params.userId) {
         return params.userId;
-    } else if (auth && auth.userData && auth.userData.id) {
+    } else if (auth?.userData?.id) {
         return auth.userData.id;
     } else {
         AuthService.getCurrentUser()
-            .then((userData) => {
-                auth.userData = userData;
-                return userData.id;
+            .then((user) => {
+                auth.userData = user;
+                return user.id;
             }).catch(error => {
                 console.error(error);
                 return null;

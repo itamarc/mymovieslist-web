@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { AuthContext } from '../nav/context';
+
 function MoviesListEntry({user,moviesList}) {
+    const auth = useContext(AuthContext);
+
     if (typeof user === "undefined") {
         user = moviesList.user;
     }
@@ -9,7 +13,7 @@ function MoviesListEntry({user,moviesList}) {
         Object.keys(moviesList).length > 0 ?
         <div className="movieList">
             <span className="movieListName">Name: <Link to={"/movies-lists/"+moviesList.id}><strong>{moviesList.title}</strong></Link></span>
-            <span className="movieListUser">User: <Link to={"/user/"+user.id}><strong>{user.name}</strong></Link></span>
+            <span className="movieListUser">User: { auth.authenticated ? <Link to={"/user/"+user.id}><strong>{user.name}</strong></Link> : <strong>{user.name}</strong>}</span>
         </div>
         :
         <div className="movieList">

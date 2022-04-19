@@ -7,16 +7,12 @@ function RegisterLoginButtons() {
     const navigate = useNavigate()
     let auth = useContext(AuthContext);
 
-    function signoutCallback() {
-        console.log("signoutCallback");
-    }
-
     const logout = () => {
-        auth.signout(signoutCallback);
+        auth.logout();
         navigate("/");
     }
 
-    if (auth.userData && auth.userData.id) {
+    if (auth.authenticated) {
         return (
             <span className='menu-items'>
                 <button className="menu-item" onClick={() => navigate("/user")}><img id="userimg"

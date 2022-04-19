@@ -21,14 +21,11 @@ function LoginForm() {
                 console.log(token);
                 AuthService.getCurrentUser()
                     .then((user) => {
-                        auth.userData = user ;
-                        console.log("auth.userData:");
-                        console.log(auth.userData);
+                        auth.login(user);
                     });
                 navigate("/");
             }).catch(error => {
-                AuthService.logout();
-                auth.userData = null;
+                auth.logout();
                 setStatus('error');
                 setStatusMessage((error && error.message) || 'Oops! Something went wrong. Please try again!');
             });

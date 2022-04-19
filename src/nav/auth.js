@@ -3,24 +3,11 @@ import { useLocation, Navigate } from 'react-router-dom';
 import { AuthContext } from './context';
 import AuthService from '../services/AuthService';
 
-/**
- * This represents some generic auth provider API, like Firebase.
- */
-const googleAuthProvider = {
-    signin(callback) {
-      setTimeout(callback, 100); // fake async
-      // check if user is registered and get its data from the server
-    },
-    signout(callback) {
-      AuthService.logout();
-    }
-};
-
 function RequireAuth({ children }) {
     const auth = useContext(AuthContext);
     let location = useLocation();
 
-    if (!auth.userData) {
+    if (!auth.authenticated) {
       AuthService.getCurrentUser()
         .then(userData => {
           auth.userData = userData;
@@ -40,26 +27,21 @@ function RequireAuth({ children }) {
 }
 
 function AuthProvider({ children }) {
-    let [user, setUser] = useState(null);
-    let [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState({});
+    const [authenticated, setAuthenticated] = useState(false);
 
-    let signin = (newUser, callback) => {
-      return googleAuthProvider.signin(() => {
-        setUser(newUser.name);
-        setUserData(newUser);
-        callback();
-      });
+    let login = (user) => {
+      setUserData(user);
+      setAuthenticated(true);
     };
 
-    let signout = (callback) => {
+    let logout = () => {
       setUserData({});
-      return googleAuthProvider.signout(() => {
-        setUser(null);
-        callback();
-      });
+      setAuthenticated(false);
+      AuthService.logout();
     };
 
-    let value = { user, userData, signin, signout };
+    let value = { userData, authenticated, login, logout };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
