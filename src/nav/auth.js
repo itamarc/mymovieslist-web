@@ -17,21 +17,23 @@ const googleAuthProvider = {
 };
 
 function RequireAuth({ children }) {
-    let auth = useContext(AuthContext);
+    const auth = useContext(AuthContext);
     let location = useLocation();
 
     if (!auth.userData) {
-      let userData = AuthService.getCurrentUser();
-      if (userData && !userData instanceof Promise) {
-        auth.userData = userData;
-      } else {
-        AuthService.logout();
-        // Redirect them to the /login page, but save the current location they were
-        // trying to go to when they were redirected. This allows us to send them
-        // along to that page after they login, which is a nicer user experience
-        // than dropping them off on the home page.
-        return <Navigate to="/login" state={{ from: location }} />;
-      }
+      AuthService.getCurrentUser()
+        .then(userData => {
+          auth.userData = userData;
+        }).catch(error => {
+          auth.userData = null;
+          AuthService.logout();
+          console.error(error);
+          // Redirect them to the /login page, but save the current location they were
+          // trying to go to when they were redirected. This allows us to send them
+          // along to that page after they login, which is a nicer user experience
+          // than dropping them off on the home page.
+        });
+      return <Navigate to="/login" state={{ from: location }} />;
     }
 
     return children;

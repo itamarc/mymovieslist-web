@@ -15,15 +15,23 @@ function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        AuthService.login(email, password).then(() => {
-            auth.userData = JSON.parse(localStorage.getItem("userData"));
-            navigate("/");
-        }).catch(error => {
-            AuthService.logout();
-            auth.userData = null;
-            setStatus('error');
-            setStatusMessage((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });
+        AuthService.login(email, password)
+            .then((token) => {
+                console.log("token:");
+                console.log(token);
+                AuthService.getCurrentUser()
+                    .then((user) => {
+                        auth.userData = user ;
+                        console.log("auth.userData:");
+                        console.log(auth.userData);
+                    });
+                navigate("/");
+            }).catch(error => {
+                AuthService.logout();
+                auth.userData = null;
+                setStatus('error');
+                setStatusMessage((error && error.message) || 'Oops! Something went wrong. Please try again!');
+            });
     }
 
     return (

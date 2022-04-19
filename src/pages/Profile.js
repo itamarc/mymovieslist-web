@@ -5,6 +5,7 @@ import User from "../components/User";
 import MovieListEntry from "../components/MoviesListEntry";
 import { AuthContext } from "../nav/context";
 import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 
 
 function Profile() {
@@ -19,6 +20,8 @@ function Profile() {
             .then(user => {
                 setUserAndLists(user);
                 setMoviesLists(user.moviesLists);
+            }).catch(error => {
+                console.error(error);
             });
     }, [userId]);
 
@@ -39,11 +42,17 @@ function Profile() {
 function getUserId(params, auth) {
     if (typeof params.userId !== "undefined") {
         return params.userId;
-    } else if (typeof auth !== "undefined" && typeof auth.userData !== "undefined"
-        && typeof auth.userData.id !== "undefined") {
+    } else if (auth && auth.userData && auth.userData.id) {
         return auth.userData.id;
     } else {
-        return "";
+        AuthService.getCurrentUser()
+            .then((userData) => {
+                auth.userData = userData;
+                return userData.id;
+            }).catch(error => {
+                console.error(error);
+                return null;
+            });
     }
 }
 

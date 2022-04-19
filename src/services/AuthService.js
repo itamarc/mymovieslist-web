@@ -6,19 +6,20 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
 const API_AUTH_URL = API_BASE_URL + "/auth";
 
 class AuthService {
-    login(email, password) {
-        return axios.post(API_AUTH_URL + "/login", {
-            email: email,
-            password: password
-        }).then(response => {
-            if (response.data.accessToken) {
+    async login(email, password) {
+        try {
+            const response = await axios.post(API_AUTH_URL + "/login", {
+                email: email,
+                password: password
+            });
+            const data = await response.data;
+            if (data.accessToken) {
                 localStorage.setItem(ACCESS_TOKEN, response.data.accessToken);
-                this.getCurrentUser();
             }
-            return response.data;
-        }).catch(error => {
-            return Promise.reject(error);
-        });
+            return data;
+        } catch (error) {
+            return await Promise.reject(error);
+        }
     }
 
     logout() {
@@ -34,15 +35,15 @@ class AuthService {
         });
     }
 
-    getCurrentUser() {
+    async getCurrentUser() {
         var token = localStorage.getItem(ACCESS_TOKEN);
         if(!token) {
-            return Promise.reject("No access token set.");
+            return Promise.reject("No user authenticated.");
         }
 
         if (this.isTokenExpired(token)) {
             this.logout();
-            return Promise.reject("Access token expired.");
+            return Promise.reject("Authentication expired.");
         }
 
         var userData = localStorage.getItem("userData");
@@ -50,15 +51,13 @@ class AuthService {
             return userData;
         }
 
-        return axios.get(
+        const result = await axios.get(
             API_BASE_URL + "/user/me",
             { headers: this.authHeader() }
-        ).then(response => {
-            localStorage.setItem("userData", JSON.stringify(response.data));
-            return response.data;
-        }).catch(error => {
-            return Promise.reject(error);
-        });
+        );
+        const data = result.data;
+        localStorage.setItem("userData", JSON.stringify(data));
+        return data;
     }
 
     authHeader() {
