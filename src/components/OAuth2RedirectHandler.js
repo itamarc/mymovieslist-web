@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useLocation, Navigate } from "react-router-dom";
+
 import { ACCESS_TOKEN } from "../constants";
+import { AuthContext } from '../nav/context';
+import AuthService from "../services/AuthService";
 
 function OAuth2RedirectHandler() {
     let location = useLocation();
+    const auth = useContext(AuthContext);
 
     useEffect(() => {
         let params = new URLSearchParams(location.search);
-        let accessToken = params.get("access_token");
+        let accessToken = params.get("token");
         console.log("xOAuth2RedirectHandler accessToken:", accessToken);
         if (accessToken) {
             localStorage.setItem(ACCESS_TOKEN, accessToken);
-            Navigate("/");
         }
     }, [location]);
 
@@ -28,18 +31,13 @@ function OAuth2RedirectHandler() {
 
     if (token) {
         localStorage.setItem(ACCESS_TOKEN, token);
-        return <Navigate to={{
-            pathname: "/user",
-            state: { from: location }
-        }}/>; 
+        (async () => {
+            const user = await AuthService.getCurrentUser();
+            auth.login(user);
+        })();
+        return <Navigate to="/user" state={{ from: location }} />;
     } else {
-        return <Navigate to={{
-            pathname: "/login",
-            state: { 
-                from: location,
-                error: error 
-            }
-        }}/>; 
+        return <Navigate to="/login" state={{ from: location, error: error }} />;
     }
 }
 

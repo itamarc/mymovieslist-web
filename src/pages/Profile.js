@@ -16,6 +16,7 @@ function Profile() {
     const [moviesLists, setMoviesLists] = useState([]);
 
     useEffect(() => {
+        if (userId) {
         UserService.getUserWithMoviesLists(userId)
             .then(user => {
                 setUserAndLists(user);
@@ -23,6 +24,7 @@ function Profile() {
             }).catch(error => {
                 console.error(error);
             });
+        }
     }, [userId]);
 
     return (
@@ -47,10 +49,11 @@ function getUserId(params, auth) {
     } else {
         AuthService.getCurrentUser()
             .then((user) => {
-                auth.userData = user;
+                auth.login(user);
                 return user.id;
             }).catch(error => {
                 console.error(error);
+                auth.logout();
                 return null;
             });
     }

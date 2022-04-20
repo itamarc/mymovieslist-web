@@ -27,15 +27,18 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/user/:userId" element={<Profile />} />
           <Route path="/search/:movie_search_input" element={<SearchResult />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
+          <Route path="/user/:userId" element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          } />
           <Route path="/user" element={
-              <RequireAuth>
-                <Profile />
-              </RequireAuth>
-            }
-          />
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          } />
           <Route
             path="*"
             element={
