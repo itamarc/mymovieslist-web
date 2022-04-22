@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import RegisterLoginDialog from './RegisterLoginDialog';
 import { AuthContext } from "../nav/context";
 
-function RegisterLoginButtons() {
+function RegisterLoginButton() {
     const navigate = useNavigate()
     let auth = useContext(AuthContext);
 
@@ -22,12 +23,9 @@ function RegisterLoginButtons() {
         );
     } else {
         return (
-            <span className='menu-items'>
-                <button className="menu-item" onClick={() => navigate("/register")}>Register</button>
-                <button className="menu-item" onClick={() => navigate("/login")}>Login</button>
-            </span>
+            <RegisterLoginDialog />
         );
     }
 }
 
-export default RegisterLoginButtons;
+export default RegisterLoginButton;
