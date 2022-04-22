@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Toolbar } from '@mui/material';
 import SearchForm from './SearchForm';
-import RegisterLoginButton from './RegisterLoginButton';
+import UserButton from './UserButton';
 
 function Menu() {
 
@@ -9,7 +9,7 @@ function Menu() {
         <Box>
             <Toolbar>
                 <SearchForm />
-                <RegisterLoginButton />
+                <UserButton />
             </Toolbar>
         </Box>
     );

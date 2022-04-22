@@ -61,6 +61,7 @@ function Layout() {
     <Container>
       <Outlet />
     </Container>
+    <div id="prefooter">&nbsp;</div>
     <Footer />
     </>
   );
