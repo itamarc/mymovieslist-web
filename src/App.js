@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import SearchResult from './pages/SearchResult';
 
 import './App.css';
+import { Container } from '@mui/material';
 
 export default function App() {
   return (
@@ -55,12 +56,12 @@ export default function App() {
 
 function Layout() {
   return (
-    <div className="App">
-      <Header />
-      <div id="postheader">&nsbsp;</div>
+    <>
+    <Header />
+    <Container>
       <Outlet />
-      <div id="prefooter">&nbsp;</div>
-      <Footer />
-    </div>
+    </Container>
+    <Footer />
+    </>
   );
 }

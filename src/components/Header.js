@@ -1,15 +1,28 @@
+import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import React from 'react';
 
 import Menu from './Menu';
-import SearchForm from './SearchForm';
+import MMLLogo from '../img/mml-logo.svg';
 
 function Header() {
     return (
-        <header>
-            <h1><img src="/mml-logo120.png" alt="My Movies List" /> My Movies List</h1>
-            <SearchForm />
-            <Menu />
-        </header>
+        <AppBar position="sticky">
+            <Container maxWidth="xl">
+                <Toolbar>
+                    <Button key="home" variant="text" href="/"
+                            sx={{
+                                color: 'white',
+                                flexGrow: 0,
+                                textTransform: 'capitalize'
+                            }}><img src={MMLLogo} alt="My Movies List" id="MML_Logo" />
+                            &nbsp;&nbsp;&nbsp;My Movies List</Button>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Menu />
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 }
 
