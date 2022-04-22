@@ -1,4 +1,7 @@
 import React from 'react';
+import { InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from '@mui/material/styles';
 
 function SearchForm() {
     const [searchInput, setSearchInput] = React.useState('');
@@ -8,18 +11,58 @@ function SearchForm() {
         window.location.href = `/search/${searchInput}`;
     }
 
+    const Search = styled('div')(({ theme }) => ({
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    }));
+
+    const SearchIconWrapper = styled('div')(({ theme }) => ({
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }));
+    const StyledInputBase = styled(InputBase)(({ theme }) => ({
+        color: 'inherit',
+        '& .MuiInputBase-input': {
+            padding: theme.spacing(1, 1, 1, 0),
+            // vertical padding + font size from searchIcon
+            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+            transition: theme.transitions.create('width'),
+            width: '100%',
+            [theme.breakpoints.up('sm')]: {
+                width: '12ch',
+                '&:focus': {
+                    width: '20ch',
+                },
+            },
+        },
+    }));
+
     return (
-        <form id="search_form" onSubmit={handleSubmit}>
-            <input id="movie_search_input" name="movie_search_input" type="text" placeholder="Movie name" size="30"
-                value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-            <button id="search_button" type="submit"><svg version="1.1" x="0px" y="0px"
-	        width="1.8em" height="1.8em" viewBox="0 0 30.239 30.239"><g><path
-            d="M20.194,3.46c-4.613-4.613-12.121-4.613-16.734,0c-4.612,4.614-4.612,12.121,0,16.735
-            c4.108,4.107,10.506,4.547,15.116,1.34c0.097,0.459,0.319,0.897,0.676,1.254l6.718,6.718c0.979,0.977,2.561,0.977,3.535,0
-            c0.978-0.978,0.978-2.56,0-3.535l-6.718-6.72c-0.355-0.354-0.794-0.577-1.253-0.674C24.743,13.967,24.303,7.57,20.194,3.46z
-            M18.073,18.074c-3.444,3.444-9.049,3.444-12.492,0c-3.442-3.444-3.442-9.048,0-12.492c3.443-3.443,9.048-3.443,12.492,0
-            C21.517,9.026,21.517,14.63,18.073,18.074z"/></g></svg></button>
-        </form>
+        <Search>
+            <SearchIconWrapper>
+                <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase placeholder = "Search movie..."
+                inputProps = {{ 'aria-label': 'search' }}
+                value = {searchInput}
+                onChange = { (e) => setSearchInput(e.target.value) }
+                onSubmit = { handleSubmit } />
+        </Search>
     );
 }
 

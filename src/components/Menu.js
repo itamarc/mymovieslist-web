@@ -1,15 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search';
-import { Box } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
+import SearchForm from './SearchForm';
 
 function Menu() {
     const navigate = useNavigate()
+
+
     return (
         <Box>
-            <SearchIcon onClick={() => navigate('/search')} />
-            <AccountCircleIcon onClick={() => navigate('/login')} sx={{ marginLeft: '0.5em' }} />
+            <Toolbar>
+                <SearchForm />
+                <AccountCircleIcon onClick={() => navigate('/login')} sx={{ marginLeft: '0.5em' }} />
+            </Toolbar>
         </Box>
     );
 }
