@@ -39,7 +39,7 @@ function Footer() {
                         }} key="about" variant="text" onClick={handleAboutClick}>About</Button>
                     <Box sx={{ flexGrow: 1 }} />
             <Typography sx={{ flexGrow: 0, fontSize: 'small' }} align="right">My Movies List is a <Link to="/about">portfolio project</Link><br/>
-            created by <a href="https://github.com/itamarc" target="_blank">itamarc</a></Typography>
+            created by <a href="https://github.com/itamarc" target="_blank" rel="noreferrer">itamarc</a></Typography>
                 </Toolbar>
             </Container>
         </AppBar>
