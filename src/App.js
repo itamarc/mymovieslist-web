@@ -28,7 +28,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/search/:movie_search_input" element={<SearchResult />} />
+          <Route path="/search" element={<SearchResult />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
           <Route path="/user/:userId" element={
             <RequireAuth>

@@ -2,13 +2,15 @@ import React from 'react';
 import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 function SearchForm() {
-    const [searchInput, setSearchInput] = React.useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        window.location.href = `/search/${searchInput}`;
+        let searchString = event.target.searchTextInput.value;
+        navigate('/search/', {state: {searchString}});
     }
 
     const Search = styled('div')(({ theme }) => ({
@@ -35,6 +37,7 @@ function SearchForm() {
         alignItems: 'center',
         justifyContent: 'center',
     }));
+
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
         color: 'inherit',
         '& .MuiInputBase-input': {
@@ -46,22 +49,21 @@ function SearchForm() {
             [theme.breakpoints.up('sm')]: {
                 width: '12ch',
                 '&:focus': {
-                    width: '20ch',
+                    width: '25ch',
                 },
             },
         },
     }));
 
     return (
-        <Search>
+        <Search key="searchBox">
             <SearchIconWrapper>
                 <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder = "Search movie..."
-                inputProps = {{ 'aria-label': 'search' }}
-                value = {searchInput}
-                onChange = { (e) => setSearchInput(e.target.value) }
-                onSubmit = { handleSubmit } />
+            <form onSubmit = {handleSubmit}>
+            <StyledInputBase id="searchTextInput" placeholder = "Search movie..."
+                inputProps = {{ 'aria-label': 'search' }} />
+            </form>
         </Search>
     );
 }
