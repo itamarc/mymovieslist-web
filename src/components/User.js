@@ -1,3 +1,4 @@
+import { Avatar, Paper, Stack, Typography } from '@mui/material';
 import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from "../nav/context";
@@ -18,11 +19,15 @@ function User() {
     }, [params, auth]);
 
     return (
-        <div id="user">
-            <img id="avatar" src={userData.imageUrl} alt={userData.name}/>
-            <div id="username">User: {userData.name}</div>
-            <div id="email">E-mail: {userData.email}</div>
-        </div>
+        <Paper sx={{ marginTop: '1em' }} elevation={3}>
+            <Stack direction="row" spacing={1} padding={2}>
+                    <Avatar id="avatar" src={userData.imageUrl} alt={userData.name}/>
+                    <Stack spacing={1}>
+                        <Typography>User: {userData.name}</Typography>
+                        <Typography>E-mail: {userData.email}</Typography>
+                    </Stack>
+            </Stack>
+        </Paper>
     );
 }
 

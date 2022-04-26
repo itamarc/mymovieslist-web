@@ -27,10 +27,10 @@ class AuthService {
         localStorage.removeItem("userData");
     }
 
-    async register(username, email, password) {
+    async register(name, email, password) {
         try {
             const response = await axios.post(API_AUTH_URL + "/signup", {
-                username,
+                name,
                 email,
                 password
             });

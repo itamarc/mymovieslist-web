@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Paper, Snackbar, Stack, TextField } from '@mui/material';
 import AuthService from '../services/AuthService';
 import { AuthContext } from '../nav/context';
 
@@ -31,23 +31,33 @@ function LoginForm() {
             });
     }
 
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setStatus('');
+        setStatusMessage('');
+    }
+
     return (
         <>
-        <form className="auth_form" onSubmit={handleSubmit}>
-            <label id="emailLabel" htmlFor="email">Email address:</label>
-            <input id="emailInput" type="email" className="form-control" placeholder="Enter email" autoFocus
-                   value={email} onChange={(e) => setEmail(e.target.value)} />
-            <label htmlFor="password">Password:</label>
-            <input id="passwordInput" type="password" className="form-control" placeholder="Password"
-                   value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-        <Snackbar open={status !== ''}
-            autoHideDuration={6000}
-            onClose={() => { setStatus(''); setStatusMessage(''); } }
-            message={statusMessage}
-            severity={status}
-        />
+        <Paper elevation={2} sx={{ width: '30em', padding: '1em', alignContent: 'center' }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }} >
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <TextField autoFocus={true} id="emailInput" label="Email" value={email} type="email" size="small" fullWidth
+                        onChange={(e) => setEmail(e.target.value)} />
+                <TextField id="passwordInput" label="Password" value={password} type="password" size="small" fullWidth
+                        onChange={(e) => setPassword(e.target.value)} />
+                <Button type="submit" variant="contained" color="primary" size="small" sx={{ width: '12em', alignSelf: 'center' }}>Login</Button>
+            </Stack>
+        </Box>
+        </Paper>
+        <Snackbar open={status !== ''} autoHideDuration={5000}
+            onClose={handleAlertClose}>
+            <Alert onClose={handleAlertClose} severity={status} sx={{ width: '100%'}}>
+                <AlertTitle>Login failed</AlertTitle>
+                {statusMessage}</Alert>
+        </Snackbar>
       </>
     );
 }
