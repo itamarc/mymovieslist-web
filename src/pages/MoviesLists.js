@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Pagination } from "@mui/material";
+import { Box, Grid, Pagination, Typography } from "@mui/material";
 import MovieListEntry from "../components/MoviesListEntry";
 import MoviesListService from "../services/MoviesListService";
 
@@ -29,15 +29,19 @@ function MoviesLists() {
     }
 
     return (
-        <div>
-            <h1>Movies Lists:</h1>
+        <>
+        <Box marginBottom='1em'>
+            <Typography variant="h4">Movies Lists</Typography>
+            <Grid container spacing={1} justifyContent="space-between">
             { moviesLists.map(moviesList => (
               <MovieListEntry key={moviesList.id}
                 moviesList={moviesList}
               />
             ))}
-            <Pagination count={totalPages} page={page} onChange={handlePagingChange} />
-        </div>
+            </Grid>
+        </Box>
+        <Pagination count={totalPages} page={page} onChange={handlePagingChange} margin='0.5em 0em 0em 0em' />
+        </>
     );
 }
 

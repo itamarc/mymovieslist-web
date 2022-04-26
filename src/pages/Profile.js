@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Box, Grid, Typography } from "@mui/material";
 
 import User from "../components/User";
 import MovieListEntry from "../components/MoviesListEntry";
@@ -28,16 +29,18 @@ function Profile() {
     }, [userId]);
 
     return (
-        <div>
+        <Box marginBottom='1em'>
             <User userId={userId}/>
-            <h1>Movies Lists:</h1>
+            <Typography variant="h5" marginTop='1em'>Movies Lists</Typography>
+            <Grid container spacing={1} justifyContent="space-between">
             { moviesLists.map(moviesList => (
             <MovieListEntry key={moviesList.id}
                 user={userAndLists}
                 moviesList={moviesList}
             />
             ))}
-    </div>
+            </Grid>
+        </Box>
     );
 }
 
