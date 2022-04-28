@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 
 import Movie from "../components/Movie";
 import MovieListEntry from "../components/MoviesListEntry";
@@ -30,15 +30,25 @@ function MoviesList() {
                 <Grid container spacing={1} justifyContent="space-between">
                 { movies.map(movie => (
                     <Movie
-                        key={movie.id}
-                        movie={movie}
+                    key={movie.id}
+                    movie={movie}
                     />
-                ))}
+                    ))}
                 </Grid>
             </>
         );
     } else {
-        return <div>Loading...</div>;
+        return <Box 
+                    margin='2em'
+                    display='flex'
+                    justifyContent='center' >
+                    <Stack direction='column' alignItems='center'>
+                        <CircularProgress />
+                        <Typography variant="h6" color='primary'>
+                            Loading...
+                        </Typography>
+                    </Stack>
+                </Box>;
     }
 }
 
