@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Grid, Typography } from "@mui/material";
+
 import Movie from "../components/Movie";
 import MovieListEntry from "../components/MoviesListEntry";
 import MoviesListService from "../services/MoviesListService";
@@ -21,17 +23,19 @@ function MoviesList() {
 
     if (Object.keys(moviesList).length !== 0) {
         return (
-            <div>
-                <h1>Movies List:</h1>
+            <>
+                <Typography variant="h5">Movies List</Typography>
                 <MovieListEntry moviesList={moviesList} />
-                <h2>Movies:</h2>
+                <Typography variant="h6">Movies:</Typography>
+                <Grid container spacing={1} justifyContent="space-between">
                 { movies.map(movie => (
                     <Movie
                         key={movie.id}
                         movie={movie}
                     />
                 ))}
-            </div>
+                </Grid>
+            </>
         );
     } else {
         return <div>Loading...</div>;
