@@ -13,7 +13,7 @@ function About() {
                 <li>React</li>
                 <li>React Router Dom</li>
                 <li>Java Spring Framework</li>
-                <li><del>REST API</del></li>
+                <li>REST API</li>
                 <li><del>MySQL</del></li>
                 <li>Google OAuth</li>
             </ul>

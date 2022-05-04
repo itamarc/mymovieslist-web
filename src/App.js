@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Outlet, BrowserRouter as Router } from "react-router-dom";
+import { Container } from '@mui/material';
 
 import { AuthProvider, RequireAuth } from "./nav/auth";
 
@@ -14,9 +15,10 @@ import Profile from './pages/Profile';
 import About from './pages/About';
 import Register from './pages/Register';
 import SearchResult from './pages/SearchResult';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 import './App.css';
-import { Container } from '@mui/material';
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
           <Route path="/movies-lists/:moviesListId" element={<MoviesList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/register" element={<Register />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
